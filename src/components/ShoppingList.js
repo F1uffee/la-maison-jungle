@@ -1,18 +1,25 @@
-const plantList = [
-    'monstera',
-    'ficus lyrata',
-    'pothos argenté',
-    'yucca',
-    'palmier'
-]
+import { plantList } from "../datas/plantlist"
+
 
 function ShoppingList() {
+    const categories = plantList.reduce((a,b) => 
+    a.includes(b.category) ? a : a.concat(b.category),
+    []
+)
+
     return (
-        <ul>
-            {plantList.map((plant) => (
-                <li>{plant}</li>
-            ))}
-        </ul>
+        <div>
+            <ul>
+                {categories.map((category) => (
+                    <li key={category}>{category} </li>
+                ))}
+            </ul> 
+            <ul>
+                {plantList.map((plant) => (
+                    <li key={plant.id}>{plant.name} </li>
+                ))}
+            </ul>
+        </div>
     )
 }
 
